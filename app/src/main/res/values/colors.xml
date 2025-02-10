@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="button_color">#0053A0</color>
+    <color name="button_easy">@android:color/holo_green_light</color>
+    <color name="button_middle">@android:color/holo_orange_light</color>
+    <color name="button_hard">@android:color/holo_red_light</color>
+    <color name="rectangle_first">#021FE2</color>
+    <color name="rectangle_second">#02B162</color>
+    <color name="rectangle_third">#E08204</color>
+    <color name="rectangle_fourth">#91BA02</color>
+    <color name="rectangle_fifth">#B905D5</color>
+    <color name="rectangle_sixth">#595451</color>
 </resources>
