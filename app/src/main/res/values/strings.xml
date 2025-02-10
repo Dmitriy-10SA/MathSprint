@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">MathSprint</string>
+    <string name="app_name">Математический спринт</string>
+    <string name="app_rules">
+        Правила игры: на экране вы увидите три фигуры, две снизу и одну сверху.
+        В верхней фигуре и одной нижней будут числа.
+        Ваша задача выбрать из приведенных ниже чисел такое, чтобы сумма двух чисел
+        в нижних фигурах была равна сумме числа в верхней фигуре.
+    </string>
+    <string name="image_with_brain">Картинка с мозгом</string>
+    <string name="start">Начать</string>
+    <string name="restart">Попробовать снова</string>
+    <string name="record">Ваш рекорд: %d</string>
+    <string name="choice_level">Выберите сложность:</string>
+    <string name="easy_level">Легкая</string>
+    <string name="middle_level">Средняя</string>
+    <string name="hard_level">Тяжелая</string>
+    <string name="right_answers">Правильных ответов: %d (минимум %d)</string>
+    <string name="smile">Смайлик</string>
+    <string name="required_quantity">Минимальное количество правильных ответов: %d</string>
+    <string name="your_quantity">Ваше количество: %d</string>
+    <string name="required_quantity_percent">Минимальный процент правильных ответов: %d</string>
+    <string name="your_percent">Ваш процент: %d</string>
+    <string name="answers_in_this">Здесь будет счетчик ответов</string>
+    <string name="right_what">\?</string>
 </resources>

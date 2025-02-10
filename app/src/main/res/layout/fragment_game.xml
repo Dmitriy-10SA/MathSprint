@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    tools:context=".presentation.fragments.GameFragment">
+
+    <TextView
+        android:id="@+id/textViewTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/frame"
+        android:padding="8dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="00:00" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutRectangles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/textViewRectangleFirst"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/rectangle_first"
+            android:gravity="center"
+            android:padding="22dp"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textViewRectangleSecond"
+            app:layout_constraintTop_toBottomOf="@id/textViewRectangleFourth"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/textViewRectangleSecond"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#02A45B"
+            android:gravity="center"
+            android:padding="22dp"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewRectangleFirst"
+            app:layout_constraintStart_toEndOf="@id/textViewRectangleThird"
+            app:layout_constraintTop_toBottomOf="@id/textViewRectangleFifth"
+            tools:text="2" />
+
+        <TextView
+            android:id="@+id/textViewRectangleThird"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#D77E03"
+            android:gravity="center"
+            android:padding="22dp"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewRectangleSecond"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewRectangleSixth"
+            tools:text="3" />
+
+        <TextView
+            android:id="@+id/textViewRectangleFourth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#7C9D01"
+            android:gravity="center"
+            android:padding="22dp"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@id/textViewRectangleFirst"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textViewRectangleFifth"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/textViewRectangleFifth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/rectangle_fifth"
+            android:gravity="center"
+            android:padding="22dp"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@id/textViewRectangleSecond"
+            app:layout_constraintEnd_toStartOf="@id/textViewRectangleFourth"
+            app:layout_constraintStart_toEndOf="@id/textViewRectangleSixth"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="5" />
+
+        <TextView
+            android:id="@+id/textViewRectangleSixth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/rectangle_sixth"
+            android:gravity="center"
+            android:padding="22dp"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@id/textViewRectangleThird"
+            app:layout_constraintEnd_toStartOf="@id/textViewRectangleFifth"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarAccuracy"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="48dp"
+        android:progressBackgroundTint="@color/black"
+        android:secondaryProgressTint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutRectangles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewRightAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/right_answers_frame"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/progressBarAccuracy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/answers_in_this" />
+
+    <TextView
+        android:id="@+id/textViewLeftNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/left_number_background"
+        android:gravity="center"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewRightAnswers"
+        app:layout_constraintEnd_toStartOf="@id/textViewRightNumber"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCorrectNumber"
+        tools:text="5" />
+
+    <TextView
+        android:id="@+id/textViewRightNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/right_number_background"
+        android:gravity="center"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@id/textViewRightAnswers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/textViewLeftNumber"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCorrectNumber"
+        android:text="@string/right_what" />
+
+    <TextView
+        android:id="@+id/textViewCorrectNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circle_svgrepo_com"
+        android:gravity="center"
+        android:maxWidth="150dp"
+        android:maxHeight="150dp"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewLeftNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimer"
+        tools:text="2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

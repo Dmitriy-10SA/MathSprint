@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/app_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".presentation.fragments.ChoiceLevelFragment">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choice_level"
+        android:textSize="32sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/buttonEasyLevel"
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/button_easy"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/easy_level"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:padding="8dp"
+        app:cornerRadius="10dp" />
+
+    <Button
+        android:id="@+id/buttonMiddleLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/button_middle"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/middle_level"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:padding="8dp"
+        android:textSize="28sp"
+        app:cornerRadius="10dp"/>
+
+    <Button
+        android:id="@+id/buttonHardLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/button_hard"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/hard_level"
+        android:textColor="@color/white"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="28sp"
+        app:cornerRadius="10dp"/>
+</LinearLayout>
