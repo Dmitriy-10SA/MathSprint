@@ -21,7 +21,6 @@ object GameGenerator {
                     70
                 )
             }
-
             LevelDifficulty.MIDDLE -> {
                 GameSettings(
                     LevelDifficulty.MIDDLE,
@@ -31,7 +30,6 @@ object GameGenerator {
                     60
                 )
             }
-
             LevelDifficulty.HARD -> {
                 GameSettings(
                     LevelDifficulty.HARD,
