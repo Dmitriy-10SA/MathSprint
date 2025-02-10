@@ -5,6 +5,11 @@
 
 ---
 
+## **The application uses only one activity. Everything is done on fragments.**
+*В приложении используется только одна активити. Все сделано на фрагментах.*
+
+---
+
 ## **Stack (стек):**
 - Kotlin  
 - MVVM
