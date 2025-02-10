@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/rulesFragment">
+
+    <fragment
+        android:id="@+id/rulesFragment"
+        android:name="com.andef.mathsprint.presentation.fragments.RulesFragment"
+        android:label="fragment_rules"
+        tools:layout="@layout/fragment_rules" >
+        <action
+            android:id="@+id/action_rulesFragment_to_choiceLevelFragment"
+            app:destination="@id/choiceLevelFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/choiceLevelFragment"
+        android:name="com.andef.mathsprint.presentation.fragments.ChoiceLevelFragment"
+        android:label="fragment_choice_level"
+        tools:layout="@layout/fragment_choice_level" >
+        <action
+            android:id="@+id/action_choiceLevelFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.andef.mathsprint.presentation.fragments.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/action_gameFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment"
+            app:popUpTo="@id/gameFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="levelDifficulty"
+            app:argType="com.andef.mathsprint.domain.entities.LevelDifficulty" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="com.andef.mathsprint.presentation.fragments.ResultsFragment"
+        android:label="fragment_results"
+        tools:layout="@layout/fragment_results" >
+        <argument
+            android:name="gameResult"
+            app:argType="com.andef.mathsprint.domain.entities.Game" />
+    </fragment>
+</navigation>

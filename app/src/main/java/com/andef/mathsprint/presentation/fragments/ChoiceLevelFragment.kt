@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.andef.mathsprint.R
 import com.andef.mathsprint.databinding.FragmentChoiceLevelBinding
 import com.andef.mathsprint.domain.entities.LevelDifficulty
@@ -43,15 +45,8 @@ class ChoiceLevelFragment : Fragment() {
     }
 
     private fun startGameFragment(levelDifficulty: LevelDifficulty) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fcv_main, GameFragment.newInstance(levelDifficulty))
-            .addToBackStack(GameFragment.NAME)
-            .commit()
-    }
-
-    companion object {
-        const val NAME = "ChoiceLevelFragment"
-
-        fun newInstance(): ChoiceLevelFragment = ChoiceLevelFragment()
+        findNavController().navigate(
+            ChoiceLevelFragmentDirections.actionChoiceLevelFragmentToGameFragment(levelDifficulty)
+        )
     }
 }
