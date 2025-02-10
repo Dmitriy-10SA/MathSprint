@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.andef.mathsprint.R
 import com.andef.mathsprint.databinding.FragmentChoiceLevelBinding
 import com.andef.mathsprint.domain.entities.LevelDifficulty
 
