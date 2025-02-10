@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.andef.mathsprint.R
 import com.andef.mathsprint.databinding.FragmentGameBinding
 import com.andef.mathsprint.domain.entities.LevelDifficulty
@@ -25,17 +26,17 @@ class GameFragment : Fragment() {
 
     private lateinit var viewModel: GameViewModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        levelDifficulty = GameFragmentArgs.fromBundle(requireArguments()).levelDifficulty
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentGameBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parseArgs()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -106,9 +107,9 @@ class GameFragment : Fragment() {
             }
         }
         viewModel.isTimeUp.observe(viewLifecycleOwner) { game ->
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fcv_main, ResultsFragment.newInstance(game))
-                .commit()
+            findNavController().navigate(
+                GameFragmentDirections.actionGameFragmentToResultsFragment(game)
+            )
         }
         viewModel.isCorrectAnswer.observe(viewLifecycleOwner) { isCorrectAnswer ->
             if (isCorrectAnswer) {
@@ -142,25 +143,5 @@ class GameFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    @Suppress("DEPRECATION")
-    private fun parseArgs() {
-        requireArguments().getParcelable<LevelDifficulty>(LEVEL_DIFFICULTY)?.let {
-            levelDifficulty = it
-        }
-    }
-
-    companion object {
-        const val NAME = "GameFragment"
-        private const val LEVEL_DIFFICULTY = "levelDif"
-
-        fun newInstance(levelDifficulty: LevelDifficulty): GameFragment {
-            return GameFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(LEVEL_DIFFICULTY, levelDifficulty)
-                }
-            }
-        }
     }
 }

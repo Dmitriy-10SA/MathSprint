@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.andef.mathsprint.R
 import com.andef.mathsprint.databinding.FragmentRulesBinding
 
@@ -28,10 +29,7 @@ class RulesFragment : Fragment() {
     }
 
     private fun launchChooseLevelFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fcv_main, ChoiceLevelFragment.newInstance())
-            .addToBackStack(ChoiceLevelFragment.NAME)
-            .commit()
+        findNavController().navigate(R.id.action_rulesFragment_to_choiceLevelFragment)
     }
 
     override fun onDestroyView() {

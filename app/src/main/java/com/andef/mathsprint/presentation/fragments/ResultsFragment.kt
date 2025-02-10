@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.andef.mathsprint.R
 import com.andef.mathsprint.databinding.FragmentResultsBinding
 import com.andef.mathsprint.domain.entities.Game
@@ -21,11 +21,6 @@ class ResultsFragment : Fragment() {
 
     private lateinit var gameResult: Game
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parseArgs()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,11 +29,10 @@ class ResultsFragment : Fragment() {
         return binding.root
     }
 
-    @Suppress("DEPRECATION")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        gameResult = requireArguments().getParcelable<Game>(GAME_RESULT) as Game
+        gameResult = ResultsFragmentArgs.fromBundle(requireArguments()).gameResult
 
         settings = requireActivity().getSharedPreferences(RECORDS, Context.MODE_PRIVATE)
 
@@ -74,6 +68,7 @@ class ResultsFragment : Fragment() {
                     recordPercent = percent
                 }
             }
+
             LevelDifficulty.MIDDLE -> {
                 record = recordMiddle
                 recordPercent = recordMiddlePercent
@@ -84,6 +79,7 @@ class ResultsFragment : Fragment() {
                     recordPercent = percent
                 }
             }
+
             LevelDifficulty.HARD -> {
                 record = recordHard
                 recordPercent = recordHardPercent
@@ -103,12 +99,6 @@ class ResultsFragment : Fragment() {
     }
 
     private fun initRetryButtonAndBackPressed() {
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    retry()
-                }
-            })
         binding.buttonRestart.setOnClickListener {
             retry()
         }
@@ -148,16 +138,7 @@ class ResultsFragment : Fragment() {
         return ((gameResult.correctAnswers.toFloat() / gameResult.totalAnswers) * 100).toInt()
     }
 
-    @Suppress("DEPRECATION")
-    private fun parseArgs() {
-        requireArguments().getParcelable<Game>(GAME_RESULT)?.let {
-            gameResult = it
-        }
-    }
-
-    private fun retry() {
-        requireActivity().supportFragmentManager.popBackStack(GameFragment.NAME, 1)
-    }
+    private fun retry() = findNavController().popBackStack()
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -172,15 +153,5 @@ class ResultsFragment : Fragment() {
         private const val EASY_PERCENT_RECORD = "easyPercentRecord"
         private const val MIDDLE_PERCENT_RECORD = "middlePercentRecord"
         private const val HARD_PERCENT_RECORD = "hardPercentRecord"
-
-        private const val GAME_RESULT = "gameResult"
-
-        fun newInstance(gameResult: Game): ResultsFragment {
-            return ResultsFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(GAME_RESULT, gameResult)
-                }
-            }
-        }
     }
 }
