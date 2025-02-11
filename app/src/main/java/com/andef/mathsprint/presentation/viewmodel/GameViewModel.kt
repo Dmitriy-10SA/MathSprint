@@ -9,12 +9,7 @@ import com.andef.mathsprint.domain.entities.LevelDifficulty
 import com.andef.mathsprint.domain.usecases.CheckRightNumberUseCase
 import com.andef.mathsprint.domain.usecases.GenerateLevelUseCase
 import com.andef.mathsprint.domain.usecases.GenerateNewExampleUseCase
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class GameViewModel : ViewModel() {
