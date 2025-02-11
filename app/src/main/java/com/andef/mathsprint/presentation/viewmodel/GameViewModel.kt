@@ -3,6 +3,7 @@ package com.andef.mathsprint.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.andef.mathsprint.domain.entities.Game
 import com.andef.mathsprint.domain.entities.LevelDifficulty
 import com.andef.mathsprint.domain.usecases.CheckRightNumberUseCase
@@ -65,8 +66,6 @@ class GameViewModel : ViewModel() {
 
     private lateinit var game: Game
 
-    private val scope = CoroutineScope(Dispatchers.IO)
-
     fun startGame(levelDifficulty: LevelDifficulty) {
         game = generateLevel.execute(levelDifficulty)
         _minAccuracy.value = game.gameSettings.minPercentOfCorrectAnswers
@@ -74,14 +73,13 @@ class GameViewModel : ViewModel() {
     }
 
     private fun startTimer() {
-        scope.launch {
+        viewModelScope.launch {
             var seconds = game.gameSettings.gameTimeInSeconds
             while (seconds > 0) {
-                _timer.postValue(seconds--)
+                _timer.value = seconds--
                 delay(1000)
-                if (!scope.isActive) throw CancellationException()
             }
-            _isTimeUp.postValue(game)
+            _isTimeUp.value = game
         }
     }
 
@@ -109,10 +107,5 @@ class GameViewModel : ViewModel() {
         _rectangleFourth.value = variants[3]
         _rectangleFifth.value = variants[4]
         _rectangleSixth.value = variants[5]
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        scope.cancel()
     }
 }
