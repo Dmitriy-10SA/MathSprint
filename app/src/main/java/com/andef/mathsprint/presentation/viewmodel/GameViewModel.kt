@@ -9,19 +9,15 @@ import com.andef.mathsprint.domain.entities.LevelDifficulty
 import com.andef.mathsprint.domain.usecases.CheckRightNumberUseCase
 import com.andef.mathsprint.domain.usecases.GenerateLevelUseCase
 import com.andef.mathsprint.domain.usecases.GenerateNewExampleUseCase
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class GameViewModel : ViewModel() {
-    private val checkRightNumber = CheckRightNumberUseCase
-    private val generateLevel = GenerateLevelUseCase
-    private val generateNewExample = GenerateNewExampleUseCase
-
+class GameViewModel @Inject constructor(
+    private val checkRightNumberUseCase: CheckRightNumberUseCase,
+    private val generateLevelUseCase: GenerateLevelUseCase,
+    private val generateNewExampleUseCase: GenerateNewExampleUseCase
+) : ViewModel() {
     private val _rectangleFirst = MutableLiveData<Int>()
     val rectangleFirst: LiveData<Int> = _rectangleFirst
 
@@ -67,7 +63,7 @@ class GameViewModel : ViewModel() {
     private lateinit var game: Game
 
     fun startGame(levelDifficulty: LevelDifficulty) {
-        game = generateLevel.execute(levelDifficulty)
+        game = generateLevelUseCase.execute(levelDifficulty)
         _minAccuracy.value = game.gameSettings.minPercentOfCorrectAnswers
         startTimer()
     }
@@ -84,7 +80,7 @@ class GameViewModel : ViewModel() {
     }
 
     fun checkNumber(rightNumber: Int) {
-        _isCorrectAnswer.value = checkRightNumber.execute(rightNumber)
+        _isCorrectAnswer.value = checkRightNumberUseCase.execute(rightNumber)
         _correctAnswersCount.value = Pair(
             game.correctAnswers,
             game.gameSettings.minCntOfCorrectAnswers
@@ -96,7 +92,7 @@ class GameViewModel : ViewModel() {
     }
 
     fun newExample() {
-        val example = generateNewExample.execute()
+        val example = generateNewExampleUseCase.execute()
         _leftNumber.value = example.leftNumber
         _answerNumber.value = example.correctAnswer
 

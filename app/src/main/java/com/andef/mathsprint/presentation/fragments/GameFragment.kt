@@ -16,17 +16,29 @@ import androidx.navigation.fragment.findNavController
 import com.andef.mathsprint.R
 import com.andef.mathsprint.databinding.FragmentGameBinding
 import com.andef.mathsprint.domain.entities.LevelDifficulty
+import com.andef.mathsprint.presentation.app.GameApplication
+import com.andef.mathsprint.presentation.factory.ViewModelFactory
 import com.andef.mathsprint.presentation.viewmodel.GameViewModel
+import javax.inject.Inject
 
 class GameFragment : Fragment() {
     private var _binding: FragmentGameBinding? = null
     private val binding get() = _binding!!
 
+    private val component by lazy {
+        (requireActivity().application as GameApplication).component
+    }
+
     private lateinit var levelDifficulty: LevelDifficulty
 
-    private lateinit var viewModel: GameViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[GameViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         levelDifficulty = GameFragmentArgs.fromBundle(requireArguments()).levelDifficulty
     }
@@ -39,14 +51,12 @@ class GameFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initTextViews()
         initViewModel()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun initTextViews() {
         with(binding) {
             initTextViewRectangle(textViewRectangleSixth)
@@ -66,8 +76,6 @@ class GameFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this)[GameViewModel::class.java]
-
         initViewModelObservers()
 
         viewModel.startGame(levelDifficulty)

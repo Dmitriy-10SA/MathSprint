@@ -1,14 +1,19 @@
 package com.andef.mathsprint.data.repository
 
 import com.andef.mathsprint.data.datasource.GameGenerator
+import com.andef.mathsprint.di.ApplicationScope
 import com.andef.mathsprint.domain.entities.Example
 import com.andef.mathsprint.domain.entities.Game
 import com.andef.mathsprint.domain.entities.LevelDifficulty
 import com.andef.mathsprint.domain.repository.GameRepository
+import javax.inject.Inject
 
-object GameRepositoryImpl : GameRepository {
-    private const val NUMBER_DEFAULT_INIT = -1
-    private const val MIN_VALUE = 2
+@ApplicationScope
+class GameRepositoryImpl @Inject constructor() : GameRepository {
+    companion object {
+        private const val NUMBER_DEFAULT_INIT = -1
+        private const val MIN_VALUE = 2
+    }
 
     private lateinit var game: Game
     private var lastRightNumber: Int = NUMBER_DEFAULT_INIT
