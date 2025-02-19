@@ -17,7 +17,6 @@
 - Clean Architecture
 - Dagger 2
 - Coroutines
-- SharedPreferences
 
 ---
 
